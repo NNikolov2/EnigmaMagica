@@ -21,6 +21,7 @@ public class ModCreativeModTabs {
                 output.accept(ModItems.WARPSTREAM_SHARD.get());
                 output.accept(ModItems.UMBRACORE.get());
                 output.accept(ModItems.UMBRACORE_SHARD.get());
+                output.accept(ModItems.DESERT_STAFF.get());
             })
             .build());
 
