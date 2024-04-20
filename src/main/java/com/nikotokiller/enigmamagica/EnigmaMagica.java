@@ -35,6 +35,7 @@ public class EnigmaMagica
         ModItems.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
 
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 

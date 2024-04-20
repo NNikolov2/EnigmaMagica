@@ -45,9 +45,10 @@ public class DesertStaffItem extends Item {
             return InteractionResultHolder.fail(player.getItemInHand(pUsedHand));
         }
 
-        if (player.getMainHandItem().getItem() instanceof DesertStaffItem && check2 == 0) {
+        if (player.getMainHandItem().getItem() instanceof DesertStaffItem && check2 == 1) {
             check2++;
-            player.sendSystemMessage(Component.literal("Searching for desert"));
+
+                player.sendSystemMessage(Component.literal("Searching for desert"));
 
             BlockPos playerPos = player.blockPosition();
             int minX = playerPos.getX() - SEARCH_RADIUS;
@@ -57,13 +58,12 @@ public class DesertStaffItem extends Item {
 
             double nearestDistanceSq = Double.MAX_VALUE;
 
-            for (int x = minX; x <= maxX; x += 32) {
-                for (int z = minZ; z <= maxZ; z += 32) {
+            for (int x = minX; x <= maxX; x += 128) {
+                for (int z = minZ; z <= maxZ; z += 128) {
                     BlockPos pos = new BlockPos(x, playerPos.getY(), z);
                     Holder<Biome> biomeResourceKey = world.getBiome(pos);
                     //I know it is disgusting
                     if (biomeResourceKey.toString().contains("minecraft:desert")) {
-                        LOGGER.debug("HEY");
                         double distanceSq = player.distanceToSqr(pos.getX(), pos.getY(), pos.getZ());
                         if (distanceSq < nearestDistanceSq) {
                             nearestDesertBiomePos = pos;
@@ -80,9 +80,12 @@ public class DesertStaffItem extends Item {
             }
 
             check2 = 0;
+            return InteractionResultHolder.success(player.getMainHandItem());
         }
-
+        check2++;
         return InteractionResultHolder.success(player.getMainHandItem());
     }
+
+
 
 }
