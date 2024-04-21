@@ -1,6 +1,7 @@
 package com.nikotokiller.enigmamagica.item;
 
 import com.nikotokiller.enigmamagica.EnigmaMagica;
+import com.nikotokiller.enigmamagica.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,6 +23,7 @@ public class ModCreativeModTabs {
                 output.accept(ModItems.UMBRACORE.get());
                 output.accept(ModItems.UMBRACORE_SHARD.get());
                 output.accept(ModItems.DESERT_STAFF.get());
+                output.accept(ModBlocks.WARPSTONE_ORE.get());
             })
             .build());
 

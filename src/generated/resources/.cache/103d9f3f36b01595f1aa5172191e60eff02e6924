@@ -1,0 +1,4 @@
+// 1.20.1	2024-04-21T21:22:02.1667553	Registries
+eddeb6f44666dfb6ba6c091476440ad2393940b1 data/enigmamagica/forge/biome_modifier/add_warpstone_ore.json
+3a9bf6dc5ba3ecb1c6fe30ef9aad83a83bf02e91 data/enigmamagica/worldgen/configured_feature/warpstone_ore.json
+d5f2d3bf2aaa8b3b0b0cc139feb8169e3e9af655 data/enigmamagica/worldgen/placed_feature/warpstone_ore_placed.json
