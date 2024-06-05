@@ -2,6 +2,7 @@ package com.nikotokiller.enigmamagica;
 
 import com.mojang.logging.LogUtils;
 import com.nikotokiller.enigmamagica.block.ModBlocks;
+import com.nikotokiller.enigmamagica.effect.ModEffects;
 import com.nikotokiller.enigmamagica.item.ModCreativeModTabs;
 import com.nikotokiller.enigmamagica.item.ModItems;
 import net.minecraft.world.level.block.Blocks;
@@ -36,6 +37,7 @@ public class EnigmaMagica
         ModItems.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEffects.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
