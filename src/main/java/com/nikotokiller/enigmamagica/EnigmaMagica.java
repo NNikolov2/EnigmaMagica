@@ -3,8 +3,12 @@ package com.nikotokiller.enigmamagica;
 import com.mojang.logging.LogUtils;
 import com.nikotokiller.enigmamagica.block.ModBlocks;
 import com.nikotokiller.enigmamagica.effect.ModEffects;
+import com.nikotokiller.enigmamagica.entity.ModEntities;
+import com.nikotokiller.enigmamagica.entity.client.DesertCentipedeRenderer;
 import com.nikotokiller.enigmamagica.item.ModCreativeModTabs;
 import com.nikotokiller.enigmamagica.item.ModItems;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +42,7 @@ public class EnigmaMagica
         ModCreativeModTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -76,7 +81,7 @@ public class EnigmaMagica
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            EntityRenderers.register(ModEntities.DESERT_CENTIPEDE.get(), DesertCentipedeRenderer::new);
         }
     }
 }

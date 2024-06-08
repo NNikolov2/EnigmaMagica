@@ -106,6 +106,16 @@
 		"firstperson_lefthand": {
 			"rotation": [0, 103, 0],
 			"translation": [0, -8.25, -0.75]
+		},
+		"gui": {
+			"rotation": [0, 0, 44.5],
+			"translation": [3.5, -3.75, 0],
+			"scale": [0.63, 0.63, 0.63]
+		},
+		"fixed": {
+			"rotation": [0, 0, 46.5],
+			"translation": [4, -4, 0],
+			"scale": [0.75, 0.75, 0.75]
 		}
 	}
 }
