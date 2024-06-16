@@ -56,14 +56,14 @@ public class DesertCentipedeEntity extends Monster implements RangedAttackMob{
 
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-        Arrow arrow = new Arrow(this.level(), this);
-        double d0 = target.getX() - this.getX();
-        double d1 = target.getY(0.3333333333333333D) - arrow.getY();
-        double d2 = target.getZ() - this.getZ();
-        double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+        AcidSpitProjectileEntity projectile = new AcidSpitProjectileEntity(ModEntities.ACID_SPIT_PROJECTILE.get(), this.level());
+        double dx = target.getX() - this.getX();
+        double dy = target.getY(0.3333333333333333D) - projectile.getY();
+        double dz = target.getZ() - this.getZ();
+        double distance = Math.sqrt(dx * dx + dz * dz);
 
-        arrow.shoot(d0, d1 + d3 * 0.2, d2, 1.6F, (float)(14 - this.level().getDifficulty().getId() * 4));
-        this.level().addFreshEntity(arrow);
+        projectile.shoot(dx, dy + distance * 0.2, dz, 1.6F, (float)(14 - this.level().getDifficulty().getId() * 4)); // Adjust velocity parameters if necessary
+        this.level().addFreshEntity(projectile);
     }
 
     @Override

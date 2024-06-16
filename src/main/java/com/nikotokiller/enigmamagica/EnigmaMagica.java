@@ -4,25 +4,21 @@ import com.mojang.logging.LogUtils;
 import com.nikotokiller.enigmamagica.block.ModBlocks;
 import com.nikotokiller.enigmamagica.effect.ModEffects;
 import com.nikotokiller.enigmamagica.entity.ModEntities;
+import com.nikotokiller.enigmamagica.entity.client.AcidSpitRenderer;
 import com.nikotokiller.enigmamagica.entity.client.DesertCentipedeRenderer;
 import com.nikotokiller.enigmamagica.item.ModCreativeModTabs;
 import com.nikotokiller.enigmamagica.item.ModItems;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -82,6 +78,7 @@ public class EnigmaMagica
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.DESERT_CENTIPEDE.get(), DesertCentipedeRenderer::new);
+            EntityRenderers.register(ModEntities.ACID_SPIT_PROJECTILE.get(), AcidSpitRenderer::new);
         }
     }
 }
