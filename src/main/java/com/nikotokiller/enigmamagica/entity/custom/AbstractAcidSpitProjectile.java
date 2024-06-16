@@ -29,7 +29,7 @@ import java.util.List;
 public abstract class AbstractAcidSpitProjectile extends Projectile {
 
     private static final double BASE_DAMAGE = 2.0D;
-    private static final EntityDataAccessor<Byte> ID_FLAGS = SynchedEntityData.defineId(AbstractArrow.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Byte> ID_FLAGS = SynchedEntityData.defineId(AbstractAcidSpitProjectile.class, EntityDataSerializers.BYTE);
     private static final int FLAG_CRIT = 1;
     private static final int FLAG_NOPHYSICS = 2;
     private static final int FLAG_CROSSBOW = 4;
@@ -52,6 +52,7 @@ public abstract class AbstractAcidSpitProjectile extends Projectile {
 
     protected AbstractAcidSpitProjectile(EntityType<? extends AbstractAcidSpitProjectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        this.pickup = AbstractArrow.Pickup.DISALLOWED;
     }
 
     protected AbstractAcidSpitProjectile(EntityType<? extends AbstractAcidSpitProjectile> pEntityType, double pX, double pY, double pZ, Level pLevel) {
@@ -258,65 +259,90 @@ public abstract class AbstractAcidSpitProjectile extends Projectile {
 
     }
 
+    @Override
     protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
-        float f = (float)this.getDeltaMovement().length();
-        int i = Mth.ceil(Mth.clamp((double)f * this.baseDamage, 0.0D, (double)Integer.MAX_VALUE));
+        System.out.println("Entity hit: " + entity.getName().getString());
+
+        float f = (float) this.getDeltaMovement().length();
+        System.out.println("Delta movement length: " + f);
+
+        int i = Mth.ceil(Mth.clamp((double) f * this.baseDamage, 0.0D, (double) Integer.MAX_VALUE));
+        System.out.println("Calculated damage: " + i);
 
         Entity entity1 = this.getOwner();
         DamageSource damagesource;
+
         if (entity1 == null) {
             damagesource = this.damageSources().generic();
         } else {
             damagesource = this.damageSources().generic();
             if (entity1 instanceof LivingEntity) {
-                ((LivingEntity)entity1).setLastHurtMob(entity);
+                ((LivingEntity) entity1).setLastHurtMob(entity);
+                System.out.println("Owner set last hurt mob: " + entity.getName().getString());
             }
         }
 
         boolean flag = entity.getType() == EntityType.ENDERMAN;
+        System.out.println("Is Enderman: " + flag);
+
         int k = entity.getRemainingFireTicks();
+        System.out.println("Remaining fire ticks: " + k);
+
         if (this.isOnFire() && !flag) {
             entity.setSecondsOnFire(5);
+            System.out.println("Entity set on fire for 5 seconds");
         }
 
-        if (entity.hurt(damagesource, (float)i)) {
+        if (entity.hurt(damagesource, (float) i)) {
+            System.out.println("Entity hurt successfully");
+
             if (flag) {
+                System.out.println("Entity is Enderman, exiting early");
                 return;
             }
 
             if (entity instanceof LivingEntity) {
-                LivingEntity livingentity = (LivingEntity)entity;
+                LivingEntity livingentity = (LivingEntity) entity;
 
                 if (this.knockback > 0) {
                     double d0 = Math.max(0.0D, 1.0D - livingentity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                    Vec3 vec3 = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double)this.knockback * 0.6D * d0);
+                    Vec3 vec3 = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double) this.knockback * 0.6D * d0);
+                    System.out.println("Knockback vector: " + vec3);
+
                     if (vec3.lengthSqr() > 0.0D) {
                         livingentity.push(vec3.x, 0.1D, vec3.z);
+                        System.out.println("Entity pushed with knockback");
                     }
                 }
 
                 if (!this.level().isClientSide && entity1 instanceof LivingEntity) {
                     EnchantmentHelper.doPostHurtEffects(livingentity, entity1);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity);
+                    EnchantmentHelper.doPostDamageEffects((LivingEntity) entity1, livingentity);
+                    System.out.println("Post hurt and damage effects applied");
                 }
 
                 this.doPostHurtEffects(livingentity);
+                System.out.println("Post hurt effects executed");
             }
 
             this.playSound(this.soundEvent, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+            System.out.println("Sound played");
 
         } else {
+            System.out.println("Entity was not hurt");
             entity.setRemainingFireTicks(k);
             this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
             this.setYRot(this.getYRot() + 180.0F);
             this.yRotO += 180.0F;
+
             if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
                 this.discard();
+                System.out.println("Entity discarded");
             }
         }
-
+        this.discard();
     }
 
     protected void onHitBlock(BlockHitResult pResult) {

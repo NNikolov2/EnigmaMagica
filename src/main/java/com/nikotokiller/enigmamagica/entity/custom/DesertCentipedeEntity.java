@@ -29,6 +29,9 @@ import java.util.EnumSet;
 
 public class DesertCentipedeEntity extends Monster implements RangedAttackMob{
 
+    private long lastAttackTime = 0;
+    private static final int ATTACK_COOLDOWN_TICKS = 100;
+
     public DesertCentipedeEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -56,14 +59,29 @@ public class DesertCentipedeEntity extends Monster implements RangedAttackMob{
 
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-        AcidSpitProjectileEntity projectile = new AcidSpitProjectileEntity(ModEntities.ACID_SPIT_PROJECTILE.get(), this.level());
-        double dx = target.getX() - this.getX();
-        double dy = target.getY(0.3333333333333333D) - projectile.getY();
-        double dz = target.getZ() - this.getZ();
-        double distance = Math.sqrt(dx * dx + dz * dz);
+           AcidSpitProjectileEntity projectile = new AcidSpitProjectileEntity(ModEntities.ACID_SPIT_PROJECTILE.get(), this.level());
 
-        projectile.shoot(dx, dy + distance * 0.2, dz, 1.6F, (float)(14 - this.level().getDifficulty().getId() * 4)); // Adjust velocity parameters if necessary
-        this.level().addFreshEntity(projectile);
+
+            // Set the initial position of the projectile to be near the mob
+            double posX = this.getX();
+            double posY = this.getEyeY() - 0.1F; // Starting slightly below the eye level of the mob
+            double posZ = this.getZ();
+            projectile.setPos(posX, posY, posZ);
+
+            // Set the shooter of the projectile
+            projectile.setOwner(this);
+
+            // Calculate direction to the target
+            double dx = target.getX() - this.getX();
+            double dy = target.getY(0.3333333333333333D) - projectile.getY();
+            double dz = target.getZ() - this.getZ();
+            double distance = Math.sqrt(dx * dx + dz * dz);
+
+            projectile.shoot(dx, dy + distance * 0.2, dz, 1.6F, (float) (14 - this.level().getDifficulty().getId() * 4));
+
+            // Add the projectile to the world
+            this.level().addFreshEntity(projectile);
+
     }
 
     @Override
