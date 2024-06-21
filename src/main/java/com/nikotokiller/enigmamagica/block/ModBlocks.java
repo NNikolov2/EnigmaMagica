@@ -23,6 +23,8 @@ public class ModBlocks {
      public static final RegistryObject<Block> WARPSTONE_ORE = registerBlock("warpstone_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
              .strength(3f).requiresCorrectToolForDrops(), UniformInt.of(3, 5)));
 
+     public static final RegistryObject<Block> GEM_FUSION_TABLE = registerBlock("gem_fusion_table", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
      private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
           RegistryObject<T> toReturn = BLOCK_DEFERRED_REGISTER.register(name, block);
           registerBlockItem(name, toReturn);

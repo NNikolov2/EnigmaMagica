@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "enigmamagica:warpstone_from_smelting_warpstone_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warpstone_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "enigmamagica:warpstone_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_warpstone_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "enigmamagica:warpstone_from_smelting_warpstone_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

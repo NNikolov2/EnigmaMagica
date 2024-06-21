@@ -29,11 +29,32 @@ import java.util.EnumSet;
 
 public class DesertCentipedeEntity extends Monster implements RangedAttackMob{
 
-    private long lastAttackTime = 0;
-    private static final int ATTACK_COOLDOWN_TICKS = 100;
+    public final AnimationState idleAnimation = new AnimationState();
+    private int idleAnimationTimeout = 0;
+    public final AnimationState spitAnimation = new AnimationState();
+    public final AnimationState appearAnimation = new AnimationState();
+    public final AnimationState disappearAnimation = new AnimationState();
 
     public DesertCentipedeEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    @Override
+    public void tick(){
+         super.tick();
+
+         if(this.level().isClientSide){
+             SetupAnimationState();
+         }
+    }
+
+    private void SetupAnimationState(){
+        if(this.idleAnimationTimeout <= 0){
+            this.idleAnimationTimeout = random.nextInt(40) + 80;
+            this.idleAnimation.start(this.tickCount);
+        } else{
+            --this.idleAnimationTimeout;
+        }
     }
 
     @Override

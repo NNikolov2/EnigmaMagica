@@ -5,14 +5,12 @@ package com.nikotokiller.enigmamagica.entity.client;// Made with Blockbench 4.10
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.nikotokiller.enigmamagica.EnigmaMagica;
-import net.minecraft.client.model.EntityModel;
+import com.nikotokiller.enigmamagica.entity.animations.DesertCentipedeAnimation;
+import com.nikotokiller.enigmamagica.entity.custom.DesertCentipedeEntity;
 import net.minecraft.client.model.HierarchicalModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class DesertCentipedeModel<T extends Entity> extends HierarchicalModel<T> {
@@ -98,7 +96,9 @@ public class DesertCentipedeModel<T extends Entity> extends HierarchicalModel<T>
 
 	@Override
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
 
+		this.animate(((DesertCentipedeEntity) entity).idleAnimation, DesertCentipedeAnimation.passive, ageInTicks, 1f);
 	}
 
 	@Override
