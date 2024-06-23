@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.BinomialDistributionGenerator;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -31,7 +32,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> createSilkTouchDispatchTable(ModBlocks.WARPSTONE_ORE.get()
                         , this.applyExplosionDecay(ModBlocks.WARPSTONE_ORE.get()
                                 , LootItem.lootTableItem(ModItems.WARPSTONE.get()).apply(SetItemCountFunction.setCount(
-                                        UniformGenerator.between(1.0F, 4.0F)))
+                                                BinomialDistributionGenerator.binomial(3, 0.3f)))
                                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
     }
 
