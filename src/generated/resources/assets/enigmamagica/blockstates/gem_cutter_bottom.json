@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "enigmamagica:block/gem_cutter_bottom",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "enigmamagica:block/gem_cutter_bottom",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "enigmamagica:block/gem_cutter_bottom"
+    },
+    "facing=west": {
+      "model": "enigmamagica:block/gem_cutter_bottom",
+      "y": 90
+    }
+  }
+}

@@ -1,3 +1,6 @@
-// 1.20.1	2024-06-23T20:27:37.5813631	Loot Tables
+// 1.20.1	2024-06-26T18:38:33.8172039	Loot Tables
+6bf59773f196ebcfc6538e5e78cac155cd7fef32 data/enigmamagica/loot_tables/blocks/gem_cutter_bottom.json
+1a4eaa1aeb783f8bd00696d7d118a74d9e748eaf data/enigmamagica/loot_tables/blocks/gem_cutter_middle.json
+08b7016c6bb77c1a80cc540ca8d0819567e2fd13 data/enigmamagica/loot_tables/blocks/gem_cutter_top.json
 8d80954b8a4a44284f9aa5da2b9247cda576efdf data/enigmamagica/loot_tables/blocks/gem_fusion_table.json
 72b4a8f371ca661fab1c02bb7f1e9ce641ebf389 data/enigmamagica/loot_tables/blocks/warpstone_ore.json

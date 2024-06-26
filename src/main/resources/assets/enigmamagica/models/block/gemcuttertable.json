@@ -1,0 +1,105 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [128, 128],
+	"textures": {
+		"4": "enigmamagica:block/gem_cutter"
+	},
+	"elements": [
+		{
+			"name": "stump",
+			"from": [1, -5, 1],
+			"to": [15, 6, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -5, 0]},
+			"faces": {
+				"north": {"uv": [3.75, 0, 5.5, 1.375], "texture": "#4"},
+				"east": {"uv": [3.75, 1.375, 5.5, 2.75], "texture": "#4"},
+				"south": {"uv": [0, 4, 1.75, 5.375], "texture": "#4"},
+				"west": {"uv": [4.5, 2.75, 6.25, 4.125], "texture": "#4"},
+				"up": {"uv": [3.75, 1.75, 2, 0], "texture": "#4"},
+				"down": {"uv": [3.75, 1.75, 2, 3.5], "texture": "#4"}
+			}
+		},
+		{
+			"name": "countertop",
+			"from": [0, 6, 0],
+			"to": [16, 8, 15.6],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -5, 0]},
+			"faces": {
+				"north": {"uv": [2, 5.5, 4, 5.75], "texture": "#4"},
+				"east": {"uv": [5.5, 2.5, 7.5, 2.75], "texture": "#4"},
+				"south": {"uv": [5.5, 4.125, 7.5, 4.375], "texture": "#4"},
+				"west": {"uv": [5.5, 4.375, 7.5, 4.625], "texture": "#4"},
+				"up": {"uv": [2, 2, 0, 0], "texture": "#4"},
+				"down": {"uv": [2, 2, 0, 4], "texture": "#4"}
+			}
+		},
+		{
+			"name": "column",
+			"from": [6, -4.95, 12],
+			"to": [10, 32, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, -5, 14]},
+			"faces": {
+				"north": {"uv": [4.5, 4.125, 5, 8.75], "texture": "#4"},
+				"east": {"uv": [5, 4.125, 5.5, 8.75], "texture": "#4"},
+				"south": {"uv": [0, 5.375, 0.5, 10], "texture": "#4"},
+				"west": {"uv": [0.5, 5.375, 1, 10], "texture": "#4"},
+				"up": {"uv": [4.25, 3.25, 3.75, 2.75], "texture": "#4"},
+				"down": {"uv": [6, 4.625, 5.5, 5.125], "texture": "#4"}
+			}
+		},
+		{
+			"name": "top",
+			"from": [6.02, 15.99, 2.1],
+			"to": [9.96, 31.99, 12.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 19, 10.1]},
+			"faces": {
+				"north": {"uv": [1, 5.375, 1.5, 7.375], "texture": "#4"},
+				"east": {"uv": [2, 3.5, 3.25, 5.5], "texture": "#4"},
+				"south": {"uv": [1.5, 5.375, 2, 7.375], "texture": "#4"},
+				"west": {"uv": [3.25, 3.5, 4.5, 5.5], "texture": "#4"},
+				"up": {"uv": [6, 1.25, 5.5, 0], "texture": "#4"},
+				"down": {"uv": [6, 1.25, 5.5, 2.5], "texture": "#4"}
+			}
+		},
+		{
+			"name": "saw",
+			"from": [8, 8, 5],
+			"to": [8, 18, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 8, 5]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 1.25], "texture": "#4"},
+				"east": {"uv": [1.75, 4, 2, 5.25], "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 1.25], "texture": "#4"},
+				"west": {"uv": [4, 5.5, 4.25, 6.75], "texture": "#4"},
+				"up": {"uv": [0, 0.25, 0, 0], "texture": "#4"},
+				"down": {"uv": [0, 0, 0, 0.25], "texture": "#4"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 2, 0],
+			"scale": [0.31, 0.31, 0.31]
+		},
+		"firstperson_righthand": {
+			"translation": [2, 0.25, 0],
+			"scale": [0.34, 0.34, 0.34]
+		},
+		"firstperson_lefthand": {
+			"translation": [2.75, 2, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"ground": {
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"gui": {
+			"rotation": [161.9, 60.91, -129.66],
+			"translation": [-1.25, -1.25, 0],
+			"scale": [0.43, 0.43, 0.43]
+		},
+		"fixed": {
+			"translation": [0, -2.25, 0.5],
+			"scale": [0.46, 0.46, 0.46]
+		}
+	}
+}

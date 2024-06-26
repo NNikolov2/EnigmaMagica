@@ -1,6 +1,9 @@
 package com.nikotokiller.enigmamagica.block;
 
 import com.nikotokiller.enigmamagica.EnigmaMagica;
+import com.nikotokiller.enigmamagica.block.custom.Gem_Cutter_Bottom;
+import com.nikotokiller.enigmamagica.block.custom.Gem_Cutter_Middle;
+import com.nikotokiller.enigmamagica.block.custom.Gem_Cutter_Top;
 import com.nikotokiller.enigmamagica.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -22,6 +25,15 @@ public class ModBlocks {
 
      public static final RegistryObject<Block> WARPSTONE_ORE = registerBlock("warpstone_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
              .strength(3f).requiresCorrectToolForDrops(), UniformInt.of(3, 5)));
+
+     public static final RegistryObject<Block> GEM_CUTTER_BOTTOM = registerBlock("gem_cutter_bottom",
+             () -> new Gem_Cutter_Bottom(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
+     public static final RegistryObject<Block> GEM_CUTTER_MIDDLE = registerBlock("gem_cutter_middle",
+             () -> new Gem_Cutter_Middle(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
+     public static final RegistryObject<Block> GEM_CUTTER_TOP = registerBlock("gem_cutter_top",
+             () -> new Gem_Cutter_Top(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
 
      public static final RegistryObject<Block> GEM_FUSION_TABLE = registerBlock("gem_fusion_table", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
 

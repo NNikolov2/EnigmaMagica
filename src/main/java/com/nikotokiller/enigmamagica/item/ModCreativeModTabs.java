@@ -24,6 +24,7 @@ public class ModCreativeModTabs {
                 output.accept(ModItems.UMBRACORE_SHARD.get());
                 output.accept(ModItems.DESERT_STAFF.get());
                 output.accept(ModBlocks.WARPSTONE_ORE.get());
+                output.accept(ModBlocks.GEM_CUTTER_BOTTOM.get());
             })
             .build());
 

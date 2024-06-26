@@ -1,0 +1,38 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "enigmamagica:block/gem_cutter_top",
+		"particle": "enigmamagica:block/gem_cutter_top"
+	},
+	"elements": [
+		{
+			"name": "column",
+			"from": [6, 0, 12],
+			"to": [10, 5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, -32, 14]},
+			"faces": {
+				"north": {"uv": [2, 5, 4, 7.5], "texture": "#0"},
+				"east": {"uv": [4, 5, 6, 7.5], "texture": "#0"},
+				"south": {"uv": [6, 5, 8, 7.5], "texture": "#0"},
+				"west": {"uv": [7, 0, 9, 2.5], "texture": "#0"},
+				"up": {"uv": [6, 9.5, 4, 7.5], "texture": "#0"},
+				"down": {"uv": [8, 7.5, 6, 9.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "top",
+			"from": [6.02, -0.01, 2.1],
+			"to": [9.96, 4.99, 12.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, -8, 10.1]},
+			"faces": {
+				"north": {"uv": [7, 2.5, 9, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 5, 2.5], "texture": "#0"},
+				"south": {"uv": [2, 7.5, 4, 10], "texture": "#0"},
+				"west": {"uv": [0, 2.5, 5, 5], "texture": "#0"},
+				"up": {"uv": [2, 10, 0, 5], "texture": "#0"},
+				"down": {"uv": [7, 0, 5, 5], "texture": "#0"}
+			}
+		}
+	]
+}
