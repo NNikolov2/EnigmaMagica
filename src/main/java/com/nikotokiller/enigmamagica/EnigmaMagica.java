@@ -2,12 +2,16 @@ package com.nikotokiller.enigmamagica;
 
 import com.mojang.logging.LogUtils;
 import com.nikotokiller.enigmamagica.block.ModBlocks;
+import com.nikotokiller.enigmamagica.block.entity.ModBlockEntities;
 import com.nikotokiller.enigmamagica.effect.ModEffects;
 import com.nikotokiller.enigmamagica.entity.ModEntities;
 import com.nikotokiller.enigmamagica.entity.client.AcidSpitRenderer;
 import com.nikotokiller.enigmamagica.entity.client.DesertCentipedeRenderer;
 import com.nikotokiller.enigmamagica.item.ModCreativeModTabs;
 import com.nikotokiller.enigmamagica.item.ModItems;
+import com.nikotokiller.enigmamagica.screen.GemCutterScreen;
+import com.nikotokiller.enigmamagica.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,6 +43,8 @@ public class EnigmaMagica
         ModBlocks.register(modEventBus);
         ModEffects.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -79,6 +85,7 @@ public class EnigmaMagica
         {
             EntityRenderers.register(ModEntities.DESERT_CENTIPEDE.get(), DesertCentipedeRenderer::new);
             EntityRenderers.register(ModEntities.ACID_SPIT_PROJECTILE.get(), AcidSpitRenderer::new);
+            MenuScreens.register(ModMenuTypes.GEM_CUTTER_MENU.get(), GemCutterScreen::new);
         }
     }
 }

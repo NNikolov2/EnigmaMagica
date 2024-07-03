@@ -1,23 +1,33 @@
 package com.nikotokiller.enigmamagica.block.custom;
 
 import com.nikotokiller.enigmamagica.block.ModBlocks;
+import com.nikotokiller.enigmamagica.block.entity.GemCutterEntity;
+import com.nikotokiller.enigmamagica.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class Gem_Cutter_Middle extends Block implements EntityBlock {
+public class Gem_Cutter_Middle extends BaseEntityBlock{
 
     protected static final VoxelShape TOP = Block.box(6.02, 4.99, 2.1, 9.96, 15.99, 12.1);
     protected static final VoxelShape PILLAR = Block.box(6, 0, 12, 10, 16, 16);
@@ -33,7 +43,7 @@ public class Gem_Cutter_Middle extends Block implements EntityBlock {
     protected static final VoxelShape PILLAR_WEST = Block.box(0, 0, 6, 4, 16, 10);
     protected static final VoxelShape SHAPE_WEST = Shapes.or(TOP_WEST, PILLAR_WEST);
 
-    // West
+    // East
     protected static final VoxelShape TOP_EAST = Block.box(2.1, 4.99, 6.02, 12.1, 15.99, 9.96);
     protected static final VoxelShape PILLAR_EAST = Block.box(12, 0, 6, 16, 16, 10);
     protected static final VoxelShape SHAPE_EAST = Shapes.or(TOP_EAST, PILLAR_EAST);
@@ -42,6 +52,7 @@ public class Gem_Cutter_Middle extends Block implements EntityBlock {
 
     public Gem_Cutter_Middle(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -68,11 +79,42 @@ public class Gem_Cutter_Middle extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return null;
+        return new GemCutterEntity(pPos, pState);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        if (pLevel.isClientSide()) {
+            return null;
+        }
+
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.GEM_CUTTER_ENTITY.get(), (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
+    }
+
+    @Override
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (!pLevel.isClientSide()) {
+            BlockPos posTop = pPos.above();
+            BlockEntity entity = pLevel.getBlockEntity(posTop);
+            if (entity instanceof GemCutterEntity) {
+                NetworkHooks.openScreen((ServerPlayer) pPlayer, (GemCutterEntity) entity, posTop);
+            } else {
+                throw new IllegalStateException("Container provider is missing.");
+            }
+        }
+        return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof GemCutterEntity) {
+                ((GemCutterEntity) blockEntity).drops();
+            }
+        }
+
         super.onRemove(state, world, pos, newState, isMoving);
 
         if (!isMoving) {
@@ -110,11 +152,11 @@ public class Gem_Cutter_Middle extends Block implements EntityBlock {
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext p_196258_1_) {
-        Direction direction = p_196258_1_.getHorizontalDirection();
-        BlockPos blockpos = p_196258_1_.getClickedPos();
-        BlockPos blockpos1 = blockpos.relative(direction);
-        return p_196258_1_.getLevel().getBlockState(blockpos1).canBeReplaced(p_196258_1_) ? this.defaultBlockState().setValue(FACING, direction) : null;
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        Direction direction = pContext.getHorizontalDirection();
+        BlockPos blockPos = pContext.getClickedPos();
+        BlockPos blockPos1 = blockPos.relative(direction);
+        return pContext.getLevel().getBlockState(blockPos1).canBeReplaced(pContext) ? this.defaultBlockState().setValue(FACING, direction) : null;
     }
 
 }
