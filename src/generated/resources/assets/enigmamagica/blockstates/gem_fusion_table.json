@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "enigmamagica:block/gem_fusion_table",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "enigmamagica:block/gem_fusion_table",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "enigmamagica:block/gem_fusion_table"
+    },
+    "facing=west": {
+      "model": "enigmamagica:block/gem_fusion_table",
+      "y": 90
+    }
+  }
+}

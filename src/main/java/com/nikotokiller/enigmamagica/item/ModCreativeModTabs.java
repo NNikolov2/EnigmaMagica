@@ -25,6 +25,8 @@ public class ModCreativeModTabs {
                 output.accept(ModItems.DESERT_STAFF.get());
                 output.accept(ModBlocks.WARPSTONE_ORE.get());
                 output.accept(ModBlocks.GEM_CUTTER_BOTTOM.get());
+                output.accept(ModBlocks.GEM_FUSION_TABLE.get());
+                output.accept(ModBlocks.ALLOY_FURNACE.get());
             })
             .build());
 

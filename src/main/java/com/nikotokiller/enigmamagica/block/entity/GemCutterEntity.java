@@ -1,9 +1,10 @@
 package com.nikotokiller.enigmamagica.block.entity;
 
-import com.nikotokiller.enigmamagica.item.ModItems;
+import com.nikotokiller.enigmamagica.recipe.GemCutterRecipe;
 import com.nikotokiller.enigmamagica.screen.GemCutterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
@@ -25,6 +26,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class GemCutterEntity extends BlockEntity implements MenuProvider {
 
@@ -143,24 +146,48 @@ public class GemCutterEntity extends BlockEntity implements MenuProvider {
     }
 
     private void craftItem() {
-        ItemStack resultTwo = new ItemStack(ModItems.UMBRACORE_SHARD.get(), 1);
-        ItemStack resultOne = new ItemStack(ModItems.WARPSTREAM_SHARD.get(), 1);
-        this.itemStackHandler.extractItem(INPUT_SLOT, 1, false);
+        Optional<GemCutterRecipe> recipeOptional = getCurrentRecipe();
+        if (recipeOptional.isPresent()) {
+            GemCutterRecipe recipe = recipeOptional.get();
 
-        this.itemStackHandler.setStackInSlot(OUTPUT_SLOT_LEFT, new ItemStack(resultOne.getItem(), this.itemStackHandler.getStackInSlot(OUTPUT_SLOT_LEFT).getCount() + resultOne.getCount()));
-        this.itemStackHandler.setStackInSlot(OUTPUT_SLOT_RIGHT, new ItemStack(resultTwo.getItem(), this.itemStackHandler.getStackInSlot(OUTPUT_SLOT_RIGHT).getCount() + resultTwo.getCount()));
+            this.itemStackHandler.extractItem(INPUT_SLOT, 1, false);
+
+            NonNullList<ItemStack> results = recipe.getResultItems();
+            ItemStack resultOne = results.get(0);
+            ItemStack resultTwo = results.size() > 1 ? results.get(1) : ItemStack.EMPTY;
+
+            this.itemStackHandler.setStackInSlot(OUTPUT_SLOT_LEFT, new ItemStack(resultOne.getItem(), this.itemStackHandler.getStackInSlot(OUTPUT_SLOT_LEFT).getCount() + resultOne.getCount()));
+            this.itemStackHandler.setStackInSlot(OUTPUT_SLOT_RIGHT, new ItemStack(resultTwo.getItem(), this.itemStackHandler.getStackInSlot(OUTPUT_SLOT_RIGHT).getCount() + resultTwo.getCount()));
+        }
     }
+
 
     private void increaseCraftingProcess() {
           progress++;
     }
 
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.itemStackHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.WARPSTONE.get();
-        ItemStack resultOne = new ItemStack(ModItems.WARPSTREAM_SHARD.get());
-        ItemStack resultTwo = new ItemStack(ModItems.UMBRACORE_SHARD.get());
+        Optional<GemCutterRecipe> recipeOptional = getCurrentRecipe();
+        if (recipeOptional.isEmpty()) {
+            return false;
+        }
 
-        return hasCraftingItem && canInsertAmountIntoOutputSlot(resultOne.getCount(), resultTwo.getCount()) && canInsertItemIntoOutputSlots(resultOne.getItem(), resultTwo.getItem());
+        GemCutterRecipe recipe = recipeOptional.get();
+        NonNullList<ItemStack> results = recipe.getResultItems();
+        ItemStack resultOne = results.get(0);
+        ItemStack resultTwo = results.size() > 1 ? results.get(1) : ItemStack.EMPTY;
+
+        return canInsertAmountIntoOutputSlot(resultOne.getCount(), resultTwo.getCount()) &&
+                canInsertItemIntoOutputSlots(resultOne.getItem(), resultTwo.getItem());
+    }
+
+    private Optional<GemCutterRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(this.itemStackHandler.getSlots());
+        for (int i = 0; i < itemStackHandler.getSlots(); i++){
+            inventory.setItem(i, this.itemStackHandler.getStackInSlot(i));
+        }
+
+        return this.level.getRecipeManager().getRecipeFor(GemCutterRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean canInsertItemIntoOutputSlots(Item itemOne, Item itemTwo) {

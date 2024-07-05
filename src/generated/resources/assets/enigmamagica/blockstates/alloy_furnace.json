@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,lit=false": {
+      "model": "enigmamagica:block/alloy_furnace_unlit",
+      "y": 270
+    },
+    "facing=east,lit=true": {
+      "model": "enigmamagica:block/alloy_furnace_liy",
+      "y": 270
+    },
+    "facing=north,lit=false": {
+      "model": "enigmamagica:block/alloy_furnace_unlit",
+      "y": 180
+    },
+    "facing=north,lit=true": {
+      "model": "enigmamagica:block/alloy_furnace_liy",
+      "y": 180
+    },
+    "facing=south,lit=false": {
+      "model": "enigmamagica:block/alloy_furnace_unlit"
+    },
+    "facing=south,lit=true": {
+      "model": "enigmamagica:block/alloy_furnace_liy"
+    },
+    "facing=west,lit=false": {
+      "model": "enigmamagica:block/alloy_furnace_unlit",
+      "y": 90
+    },
+    "facing=west,lit=true": {
+      "model": "enigmamagica:block/alloy_furnace_liy",
+      "y": 90
+    }
+  }
+}

@@ -1,9 +1,7 @@
 package com.nikotokiller.enigmamagica.block;
 
 import com.nikotokiller.enigmamagica.EnigmaMagica;
-import com.nikotokiller.enigmamagica.block.custom.Gem_Cutter_Bottom;
-import com.nikotokiller.enigmamagica.block.custom.Gem_Cutter_Middle;
-import com.nikotokiller.enigmamagica.block.custom.Gem_Cutter_Top;
+import com.nikotokiller.enigmamagica.block.custom.*;
 import com.nikotokiller.enigmamagica.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -35,7 +33,11 @@ public class ModBlocks {
      public static final RegistryObject<Block> GEM_CUTTER_TOP = registerBlock("gem_cutter_top",
              () -> new Gem_Cutter_Top(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
 
-     public static final RegistryObject<Block> GEM_FUSION_TABLE = registerBlock("gem_fusion_table", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+     public static final RegistryObject<Block> GEM_FUSION_TABLE = registerBlock("gem_fusion_table",
+             () -> new Gem_Fusion_Table(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
+     public static final RegistryObject<Block> ALLOY_FURNACE = registerBlock("alloy_furnace",
+             () -> new Alloy_Furnace(BlockBehaviour.Properties.copy(Blocks.FURNACE)));
 
      private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
           RegistryObject<T> toReturn = BLOCK_DEFERRED_REGISTER.register(name, block);

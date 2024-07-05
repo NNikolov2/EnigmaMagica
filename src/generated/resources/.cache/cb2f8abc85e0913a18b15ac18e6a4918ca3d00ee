@@ -1,10 +1,14 @@
-// 1.20.1	2024-06-27T02:01:46.8120451	Block States: enigmamagica
+// 1.20.1	2024-07-04T16:01:57.8180024	Block States: enigmamagica
+2fd83fb2d538e9de7aad7153ca70587e751a6a68 assets/enigmamagica/blockstates/alloy_furnace.json
 17c7da13a00f1725d5ab506a72d72cf1dddde4db assets/enigmamagica/blockstates/gem_cutter_bottom.json
 d9d386af3fe14f702b80bb3ce763ae0f4cd3e93b assets/enigmamagica/blockstates/gem_cutter_middle.json
 d1927e07273898072c86f9cd71b097e4b6b93c56 assets/enigmamagica/blockstates/gem_cutter_top.json
+052a137d253bbcb5c1ae680687785996427434fd assets/enigmamagica/blockstates/gem_fusion_table.json
 c875e18cdc65b34b5d4b3f880fb431e4c80ace2a assets/enigmamagica/blockstates/warpstone_ore.json
 71f080f7e13f446fd888b49ccfbe05752f7fe9e5 assets/enigmamagica/models/block/warpstone_ore.json
+53f9b57263755bb71c5daf21652275a479853d63 assets/enigmamagica/models/item/alloy_furnace.json
 4f017e175de92b9eabe7c5e720460420f13fe7e4 assets/enigmamagica/models/item/gem_cutter_bottom.json
 c7a60f482b0d2d7183dc8b5f75a7febf3430b2fc assets/enigmamagica/models/item/gem_cutter_middle.json
 d9d827fca0188a076a6ae4debb7c653785d03e02 assets/enigmamagica/models/item/gem_cutter_top.json
+0c9a07bfda8c367668541b61fe01bb12684647a0 assets/enigmamagica/models/item/gem_fusion_table.json
 7799b605644370dfe2ed58efffff44a1a41a7f93 assets/enigmamagica/models/item/warpstone_ore.json

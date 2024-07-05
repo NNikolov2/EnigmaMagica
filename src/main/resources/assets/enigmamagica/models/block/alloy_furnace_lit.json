@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "north": "enigmamagica:block/alloy_furnace/af_front_on",
+    "east": "enigmamagica:block/alloy_furnace/af_side",
+    "south": "enigmamagica:block/alloy_furnace/af_side",
+    "west": "enigmamagica:block/alloy_furnace/af_side",
+    "up": "enigmamagica:block/alloy_furnace/af_top",
+    "down": "enigmamagica:block/alloy_furnace/af_top",
+    "particle": "enigmamagica:block/alloy_furnace/af_top"
+  }
+}

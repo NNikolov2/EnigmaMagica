@@ -9,6 +9,7 @@ import com.nikotokiller.enigmamagica.entity.client.AcidSpitRenderer;
 import com.nikotokiller.enigmamagica.entity.client.DesertCentipedeRenderer;
 import com.nikotokiller.enigmamagica.item.ModCreativeModTabs;
 import com.nikotokiller.enigmamagica.item.ModItems;
+import com.nikotokiller.enigmamagica.recipe.ModRecipes;
 import com.nikotokiller.enigmamagica.screen.GemCutterScreen;
 import com.nikotokiller.enigmamagica.screen.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -45,6 +46,7 @@ public class EnigmaMagica
         ModEntities.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

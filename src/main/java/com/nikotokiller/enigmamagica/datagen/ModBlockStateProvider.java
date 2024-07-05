@@ -21,11 +21,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-          BlockWithItem(ModBlocks.WARPSTONE_ORE);
+        BlockWithItem(ModBlocks.WARPSTONE_ORE);
 
         horizontalBlock(ModBlocks.GEM_CUTTER_BOTTOM.get(), modLoc("block/gem_cutter_bottom"), modLoc("block/gemcuttertable"));
+        horizontalBlock(ModBlocks.GEM_FUSION_TABLE.get(), modLoc("block/gem_fusion_table"), modLoc("block/gem_fusion_table"));
         horizontalBlock(ModBlocks.GEM_CUTTER_MIDDLE.get(), modLoc("block/gem_cutter_middle"), modLoc("block/gem_cutter_middle"));
         horizontalBlock(ModBlocks.GEM_CUTTER_TOP.get(), modLoc("block/gem_cutter_top"), modLoc("block/gem_cutter_top"));
+
+        furnaceBlock(ModBlocks.ALLOY_FURNACE.get(), modLoc("block/alloy_furnace_unlit"), modLoc("block/alloy_furnace_liy"));
     }
 
     private void BlockWithItem(RegistryObject<Block> blockRegistryObject){
@@ -43,5 +46,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 });
         simpleBlockItem(block, new ModelFile.UncheckedModelFile(itemModelLocation));
     }
+
+    private void furnaceBlock(Block block, ResourceLocation unlitModelLocation, ResourceLocation litModelLocation) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean lit = state.getValue(BlockStateProperties.LIT);
+                    ResourceLocation modelLocation = lit ? litModelLocation : unlitModelLocation;
+                    return ConfiguredModel.builder()
+                            .modelFile(new ModelFile.UncheckedModelFile(modelLocation))
+                            .rotationY(((int) dir.toYRot()) % 360)
+                            .build();
+                });
+        simpleBlockItem(block, new ModelFile.UncheckedModelFile(unlitModelLocation));
+    }
+
 
 }

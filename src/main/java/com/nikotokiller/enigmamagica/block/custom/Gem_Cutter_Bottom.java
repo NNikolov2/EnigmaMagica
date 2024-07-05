@@ -179,5 +179,4 @@ public class Gem_Cutter_Bottom extends BaseEntityBlock{
         return p_196258_1_.getLevel().getBlockState(blockpos1).canBeReplaced(p_196258_1_) ? this.defaultBlockState().setValue(FACING, direction) : null;
     }
 
-
 }

@@ -1,0 +1,18 @@
+{
+  "type": "enigmamagica:gem_cutting",
+  "ingredients": [
+    {
+      "item": "enigmamagica:warpstone"
+    }
+  ],
+  "output": [
+    {
+      "item": "enigmamagica:warpstream_shard",
+      "count": 1
+    },
+    {
+      "item": "enigmamagica:umbracore_shard",
+      "count": 1
+    }
+  ]
+}
