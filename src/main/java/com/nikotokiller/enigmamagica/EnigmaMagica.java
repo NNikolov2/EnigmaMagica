@@ -11,6 +11,7 @@ import com.nikotokiller.enigmamagica.item.ModCreativeModTabs;
 import com.nikotokiller.enigmamagica.item.ModItems;
 import com.nikotokiller.enigmamagica.recipe.ModRecipes;
 import com.nikotokiller.enigmamagica.screen.GemCutterScreen;
+import com.nikotokiller.enigmamagica.screen.GemFusionScreen;
 import com.nikotokiller.enigmamagica.screen.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -88,6 +89,7 @@ public class EnigmaMagica
             EntityRenderers.register(ModEntities.DESERT_CENTIPEDE.get(), DesertCentipedeRenderer::new);
             EntityRenderers.register(ModEntities.ACID_SPIT_PROJECTILE.get(), AcidSpitRenderer::new);
             MenuScreens.register(ModMenuTypes.GEM_CUTTER_MENU.get(), GemCutterScreen::new);
+            MenuScreens.register(ModMenuTypes.GEM_FUSION_MENU.get(), GemFusionScreen::new);
         }
     }
 }

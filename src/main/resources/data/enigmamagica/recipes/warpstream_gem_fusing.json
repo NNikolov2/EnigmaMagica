@@ -1,0 +1,17 @@
+{
+  "type": "enigmamagica:gem_fusing",
+  "ingredients": [
+    {
+      "item": "enigmamagica:warpstream_shard"
+    },
+    {
+      "item": "enigmamagica:warpstream_shard"
+    }
+  ],
+  "output": [
+    {
+      "item": "enigmamagica:warpstream",
+      "count": 1
+    }
+  ]
+}

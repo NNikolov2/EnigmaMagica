@@ -18,6 +18,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<GemCutterMenu>> GEM_CUTTER_MENU =
             registerMenuType("gem_cutter_menu", GemCutterMenu::new);
 
+    public static final RegistryObject<MenuType<GemFusionMenu>> GEM_FUSION_MENU =
+            registerMenuType("gem_fusion_menu", GemFusionMenu::new);
+
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENU_TYPE_DEFERRED_REGISTER.register(name, () -> IForgeMenuType.create(factory));
     }

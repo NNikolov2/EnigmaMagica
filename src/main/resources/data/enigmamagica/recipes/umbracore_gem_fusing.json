@@ -1,0 +1,17 @@
+{
+  "type": "enigmamagica:gem_fusing",
+  "ingredients": [
+    {
+      "item": "enigmamagica:umbracore_shard"
+    },
+    {
+      "item": "enigmamagica:umbracore_shard"
+    }
+  ],
+  "output": [
+    {
+      "item": "enigmamagica:umbracore",
+      "count": 1
+    }
+  ]
+}

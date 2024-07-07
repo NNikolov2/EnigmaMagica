@@ -20,6 +20,11 @@ public class ModBlockEntities {
                             ModBlocks.GEM_CUTTER_MIDDLE.get(),
                             ModBlocks.GEM_CUTTER_BOTTOM.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<GemFusionEntity>> GEM_FUSION_ENTITY =
+            BLOCK_ENTITY_TYPE_DEFERRED_REGISTER.register("gem_fusion_entity", () ->
+                    BlockEntityType.Builder.of(GemFusionEntity::new,
+                            ModBlocks.GEM_FUSION_TABLE.get()).build(null));
+
     public static void register(IEventBus eventBus){
         BLOCK_ENTITY_TYPE_DEFERRED_REGISTER.register(eventBus);
     }

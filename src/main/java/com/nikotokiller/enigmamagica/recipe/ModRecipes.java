@@ -15,6 +15,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<GemCutterRecipe>> GEM_CUTTER_SERIALIZER =
             RECIPE_SERIALIZER_DEFERRED_REGISTER.register("gem_cutting", () -> GemCutterRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<GemFusionRecipe>> GEM_FUSION_SERIALIZER =
+            RECIPE_SERIALIZER_DEFERRED_REGISTER.register("gem_fusing", () -> GemFusionRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus){
         RECIPE_SERIALIZER_DEFERRED_REGISTER.register(eventBus);
     }
